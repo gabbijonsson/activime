@@ -2,7 +2,7 @@
 
 	<div class="content">
 		<div class="weatherIcon">
-			<img src="../assets/IconSunny.png" alt="weather">
+			<img src="../assets/img/icon--weather-sunny.svg" alt="weather">
 		</div>
 		<div class="greeting"> <h1> Välkommen till <br/> ActiveMe-appen, <br/> Användare!</h1> </div>
 		<p>{{ startDay }}</p>
@@ -67,5 +67,7 @@ data: () => ({
 		position: absolute;
 		top: 95px;
 		left: 18px;		
+		height: 120px;
+		width: 120px;
 	}
 </style>
