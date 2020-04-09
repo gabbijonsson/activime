@@ -22,8 +22,12 @@ export default {
 			.then(Response => {
 				console.log(Response);
 				console.log(Response.data);
-				this.weatherCode = Response.data.current.condition.code
-				this.temp_C = Response.data.current.temp_c
+				this.weatherCode = Response.data.current.condition.code		//Lägger väderkoden i "weatherCode"
+				this.temp_C = Response.data.current.temp_c			// Lägger temperaturen i "temp_C"
+				console.log(this.weatherCode);
+				console.log(this.temp_C);
+				
+				
 			})
 		},
 	},
