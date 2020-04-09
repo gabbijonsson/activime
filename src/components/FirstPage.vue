@@ -1,6 +1,6 @@
 <template>
-
 	<div class="content">
+	<ApiHandler/>
 		<div class="weatherIcon">
 			<img src="../assets/img/icon--weather-sunny.svg" alt="weather">
 		</div>
@@ -12,10 +12,11 @@
 </template>
 
 <script>
+import ApiHandler from './ApiHandler'
 export default {
 name: 'FirstPage',
 components: {
-
+	ApiHandler,
 },
 data: () => ({
 	greeting: `Välkommen
