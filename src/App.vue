@@ -1,7 +1,10 @@
 <template>
 	<div id="app">
-		<Header/>
-		<FirstPage/>
+		<Header 
+		@showHome="showHome($event)"
+		@showsettings="showsettings($event)"/>
+		<FirstPage v-if="showFirstPage"/>
+		<SettingsPage v-if="showSettings"/>
 		<Footer/>
 	</div>
 </template>
@@ -10,13 +13,32 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
+import SettingsPage from './components/SettingsPage'
+
 export default {
 	name: 'App',
 	components: {
 		Header,
 		Footer,
-		FirstPage
-	}
+		FirstPage,
+		SettingsPage,
+	},
+	data: () => ({
+		showSettings: false,
+		showFirstPage: true,
+	}),
+	methods: {
+		showHome(event){
+			console.log(event);
+			this.showSettings = event.settings;
+			this.showFirstPage = event.firstpage;
+		},
+		showsettings(event){
+			console.log(event);
+			this.showSettings = event.settings;
+			this.showFirstPage = event.firstpage;
+		}
+	},
 }
 </script>
 
@@ -29,5 +51,7 @@ export default {
 	color: #2c3e50;
 	/* margin-top: 60px; */	
 }
-
+html{
+		background-color: #bbdadf;
+	}
 </style>

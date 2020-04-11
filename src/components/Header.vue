@@ -1,8 +1,8 @@
 <template>
 	<header>
 		<div class="container">
-			<div class="item-1"><img src="../assets/Home.png" alt="Home"></div>
-			<div class="item-2"><img src="../assets/Settings.png" alt="esttings"></div>
+			<div class="item-1" @click="handleHome"><img src="../assets/Home.png" alt="Home"></div>
+			<div class="item-2" @click="handleSettings"><img src="../assets/Settings.png" alt="settings"></div>
 		</div>
 	</header>
 </template>
@@ -10,7 +10,22 @@
 <script>
 export default {
 	name: 'Header',
-	
+	data: () => ({
+		showSettings: false,
+		showFirstPage: true,
+	}),
+	methods:{
+		handleHome(){
+			this.showSettings = false;
+			this.showFirstPage = true;
+			this.$emit('showHome', {'settings': this.showSettings, 'firstpage': this.showFirstPage})
+		},
+		handleSettings(){
+			this.showSettings = true;
+			this.showFirstPage = false;
+			this.$emit('showsettings', {'settings': this.showSettings, 'firstpage': this.showFirstPage})
+		},
+	}
 }
 </script>
 
@@ -29,11 +44,14 @@ export default {
 img{
 	height: 45px;
 	width: 45px;
+	cursor: pointer;
 }
 .item-1{
 	margin-left: 1em;
+	cursor: pointer;
 }
 .item-2{
 	margin-right: 1em;
+	cursor: pointer;
 }
 </style>
