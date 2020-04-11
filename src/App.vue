@@ -1,5 +1,5 @@
 <template>
-	<div id="app">
+	<div id="app" class="spa--layout">
 		<Header/>
 		<FirstPage/>
 		<Footer/>
@@ -10,6 +10,7 @@
 import Header from './components/Header'
 import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
+
 export default {
 	name: 'App',
 	components: {
@@ -21,13 +22,36 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
 #app {
-	font-family: Montserrat;
+	box-sizing: border-box;
+	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	/* text-align: center; */
 	color: #2c3e50;
 	/* margin-top: 60px; */	
+}
+
+.spa--layout {
+	display: flex;
+	flex-direction: column;
+	/* justify-content: space-between; */
+	align-items: center;
+}
+
+Header {
+	flex: 0 1 auto;
+
+}
+
+Footer {
+	flex: 0 1 auto;
+}
+
+FirstPage {
+	flex: 1 1 auto;
 }
 
 </style>
