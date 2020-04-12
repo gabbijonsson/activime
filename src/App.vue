@@ -3,7 +3,8 @@
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
-		<FirstPage v-if="showFirstPage"/>
+		<FirstPage @showBfSprint="showBeforeSprint($event)" v-if="showFirstPage"/>
+		<BeforeSprint v-if="showBeforeSprint"/>
 		<SettingsPage v-if="showSettings"/>
 		<Footer/>
 	</div>
@@ -14,6 +15,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
+import BeforeSprint from './components/BeforeSprint'
 
 export default {
 	name: 'App',
@@ -22,10 +24,12 @@ export default {
 		Footer,
 		FirstPage,
 		SettingsPage,
+		BeforeSprint,
 	},
 	data: () => ({
 		showSettings: false,
 		showFirstPage: true,
+		showBeforeSprint: false,
 	}),
 	methods: {
 		showHome(event){
@@ -37,6 +41,10 @@ export default {
 			console.log(event);
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
+		},
+		showBeforeSprint(event){
+			console.log(event);
+			this.showBeforeSprint = event;			
 		}
 	},
 }

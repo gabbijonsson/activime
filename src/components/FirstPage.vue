@@ -1,6 +1,5 @@
 <template>
 	<div class="content">
-		<!-- <SettingsPage v-if="showSettings"/> -->
 	<ApiHandler/>
 		<div class="firstPageContent">
 			<div class="weatherIcon">
@@ -8,7 +7,7 @@
 			</div>
 			<div class="greeting"> <h1> Välkommen till <br/> ActiveMe-appen, <br/> Användare!</h1> </div>
 			<p>{{ startDay }}</p>
-			<button>NU KÖR VI!</button>
+			<button @click="handleNextPage">NU KÖR VI!</button>
 		</div>
 	</div>
 
@@ -28,7 +27,13 @@ data: () => ({
 	Användare!`,
 	startDay: 'Är du redo att påbörja din arbetsdag?',
 	
-})
+}),
+methods: {
+	handleNextPage(){
+		this.showBeforeSprint = true
+		this.$emit('showBfSprint', this.showBeforeSprint)
+	}
+},
 }
 </script>
 
