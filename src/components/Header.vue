@@ -1,8 +1,8 @@
 <template>
 	<header>
 		<div class="container">
-			<div class="item-1" @click="handleHome"><img src="../assets/Home.png" alt="Home"></div>
-			<div class="item-2" @click="handleSettings"><img src="../assets/Settings.png" alt="settings"></div>
+			<div class="item-1" @click="handleHome"><img src="../assets/img/icon--navigation-home.svg" alt="Hem-ikon"></div>
+			<div class="item-2" @click="handleSettings"><img src="../assets/img/icon--navigation-settings.svg" alt="Inställnings-ikon"></div>
 		</div>
 	</header>
 </template>
@@ -16,13 +16,11 @@ export default {
 	}),
 	methods:{
 		handleHome(){
-			console.log('Home klickat')
 			this.showSettings = false;
 			this.showFirstPage = true;
 			this.$emit('showHome', {'settings': this.showSettings, 'firstpage': this.showFirstPage})
 		},
 		handleSettings(){
-			console.log('Settings klickat')
 			this.showSettings = true;
 			this.showFirstPage = false;
 			this.$emit('showsettings', {'settings': this.showSettings, 'firstpage': this.showFirstPage})
