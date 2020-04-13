@@ -51,21 +51,21 @@ export default {
 
 body, html {
 	margin: 0;
+	padding: 0;
 }
 
 #app {
 	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* text-align: center; */
 	color: #2c3e50;
-	/* margin-top: 60px; */	
+	width: 100vw;
+	height: 100vh;
 }
 
 .spa--layout {
 	display: flex;
 	flex-direction: column;
-	/* justify-content: space-between; */
 	align-items: center;
 }
 
