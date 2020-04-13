@@ -1,10 +1,15 @@
 <template>
-	<div id="app">
+	<div id="app" >
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
-		<FirstPage @showBfSprint="showBeforeSprint($event)" v-if="showFirstPage"/>
-		<BeforeSprint v-if="showBeforeSprint"/>
+		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
+		<div v-if="showBeforeSprint">
+			<h2>Vilken uppgift vill du jobba med idag?</h2>
+		<BeforeSprint  
+		v-bind:toDoList="toDoItem"
+		v-for="toDoItem in toDoList" :key="toDoItem.id"/>
+		</div>
 		<SettingsPage v-if="showSettings"/>
 		<Footer/>
 	</div>
@@ -30,6 +35,20 @@ export default {
 		showSettings: false,
 		showFirstPage: true,
 		showBeforeSprint: false,
+		toDoList: [
+			{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
+			{id: 2, name: 'Fakturagodkännande', estTime: 120},
+			{id: 3, name: 'Skolarbete', estTime: 433},
+			{id: 4, name: 'Deklarera' , estTime: 322},
+			{id: 5, name: 'Kreditbedömningar' , estTime: 653}
+		],
+		activityList: [
+			{id: 1, name: 'Promenad'},
+			{id: 1, name: 'Stretching'},
+			{id: 1, name: 'Avslappning'},
+			{id: 1, name: 'Fikapaus'},
+			{id: 1, name: 'Lunch'},
+		]
 	}),
 	methods: {
 		showHome(event){
@@ -42,9 +61,11 @@ export default {
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
 		},
-		showBeforeSprint(event){
+		showBfSprint(event){
 			console.log(event);
-			this.showBeforeSprint = event;			
+			this.showBeforeSprint = event;
+			this.showSettings = false;
+			this.showFirstPage = false;
 		}
 	},
 }
@@ -62,4 +83,10 @@ export default {
 html{
 		background-color: #bbdadf;
 	}
+h2{
+	margin-top: 5em;
+	margin-bottom: 4em;
+	text-decoration: underline;
+	text-align: center;
+}
 </style>
