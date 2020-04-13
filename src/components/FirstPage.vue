@@ -26,7 +26,7 @@ data: () => ({
 	till ActiveMe-app, 
 	Användare!`,
 	startDay: 'Är du redo att påbörja din arbetsdag?',
-	
+	showBeforeSprint: Boolean,
 }),
 methods: {
 	handleNextPage(){
