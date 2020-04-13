@@ -16,11 +16,13 @@ export default {
 	}),
 	methods:{
 		handleHome(){
+			console.log('Home klickat')
 			this.showSettings = false;
 			this.showFirstPage = true;
 			this.$emit('showHome', {'settings': this.showSettings, 'firstpage': this.showFirstPage})
 		},
 		handleSettings(){
+			console.log('Settings klickat')
 			this.showSettings = true;
 			this.showFirstPage = false;
 			this.$emit('showsettings', {'settings': this.showSettings, 'firstpage': this.showFirstPage})

@@ -1,10 +1,10 @@
 <template>
-	<div id="app">
-		<Header class="spa--layout"
+	<div id="app" class="spa--layout">
+		<Header
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
-		<FirstPage v-if="showFirstPage"/>
-		<SettingsPage v-if="showSettings"/>
+		<FirstPage v-if="showFirstPage"/> <!-- Ska in i router -->
+		<SettingsPage v-if="showSettings"/> <!-- Ska in i router -->
 		<Footer/>
 	</div>
 </template>
@@ -71,11 +71,15 @@ body, html {
 
 Header {
 	flex: 0 1 auto;
+	z-index: 2;
+	position: relative;
 
 }
 
 Footer {
 	flex: 0 1 auto;
+	z-index: 2;
+	position: relative;
 }
 
 FirstPage {

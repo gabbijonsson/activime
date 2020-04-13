@@ -6,7 +6,7 @@
     <div class="firstpage--text-container">
       <h1 class="greeting">{{ greeting }}</h1>
       <p>{{ startDay }}</p>
-    <button class="start-sprint-button">NU KÖR VI!</button>
+      <button class="start-sprint-button">NU KÖR VI!</button>
     </div>
   </div>
 </template>
@@ -74,22 +74,20 @@ p {
 }
 
 .start-sprint-button {
-		background-color: #77c9d4;
-		width: 13em;
-		height: 3em;
-		border-radius: 20px;
-		border: 0em;
-		box-shadow: 1px 6px #999;
-		font-weight: 600;
-		font-size: 18px;
-		cursor: pointer;
-		margin-bottom: 2em;
+  background-color: #77c9d4;
+  width: 13em;
+  height: 3em;
+  border-radius: 20px;
+  border: 0em;
+  box-shadow: 1px 6px #999;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+  margin-bottom: 2em;
 }
 
 .start-sprint-button:active {
-		box-shadow: 0 5px #666;
-		transform: translateY(4px);
-
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
-
 </style>
