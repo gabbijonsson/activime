@@ -1,13 +1,12 @@
 <template>
   <div class="content">
     <ApiHandler />
-    <div class="firstpage--bg-img">
-      <div class="firstpage--text-container">
-        <h1 class="greeting">{{ greeting }}</h1>
-        <p>{{ startDay }}</p>
-      </div>
-      <button class="start-sprint-button">NU KÖR VI!</button>
+	<div class="firstpage--bgimg-container"></div>
+    <div class="firstpage--text-container">
+      <h1 class="greeting">{{ greeting }}</h1>
+      <p>{{ startDay }}</p>
     </div>
+    <button class="start-sprint-button">NU KÖR VI!</button>
   </div>
 </template>
 
@@ -20,7 +19,7 @@ export default {
   },
   data: () => ({
     greeting: `Välkommen
-	till ActiviMe, 
+	till ActiviMe,
 	Användare!`,
     startDay: "Är du redo att påbörja din arbetsdag?"
   })
@@ -42,21 +41,27 @@ p {
 }
 
 .content {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
   text-align: center;
 }
 
-.firstpage--bg-img {
+.firstpage--bgimg-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
   background: linear-gradient(
       0deg,
       rgba(119, 201, 212, 0.4),
       rgba(119, 201, 212, 0.4)
     ),
-    url(../assets/img/background-rocks.jpg);
-  mix-blend-mode: overlay;
-
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    url(../assets/img/background-rocks.jpg) no-repeat center center fixed;
+  background-size: auto;
+  filter: blur(5px);
 }
 
 .firstpage--text-container {
@@ -76,5 +81,4 @@ p {
 .greeting {
   margin-top: 3em;
 }
-
 </style>

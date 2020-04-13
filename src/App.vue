@@ -24,8 +24,15 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 
-#app {
+* {
 	box-sizing: border-box;
+}
+
+body, html {
+	margin: 0;
+}
+
+#app {
 	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
