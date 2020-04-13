@@ -21,7 +21,7 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
-		SettingsPage,
+		SettingsPage
 	},
 	data: () => ({
 		showSettings: false,

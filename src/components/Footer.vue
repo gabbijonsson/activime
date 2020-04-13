@@ -2,9 +2,9 @@
 	<footer class="footer">
 		<div class="container">
 			<div class="item-1">© 2020 ActiviMe</div>
-			<div class="item-2"><a href="https://twitter.com/pomodorotech" target="blank"><img src="../assets/img/icon--social-twitter.svg" alt="Twitter Icon"></a></div>
-			<div class="item-3"><a href="https://www.facebook.com/PomodoroPPB" target="blank"><img src="../assets/img/icon--social-facebook.svg" alt="Facebook icon"></a></div>
-			<div class="item-4"><a href="https://github.com/gabbijonsson/activime" target="blank"><img src="../assets/img/icon--social-git.svg" alt="GitHub Icon"></a></div>			
+			<div class="item-2"><a href="https://twitter.com/pomodorotech" target="blank"><img src="../assets/img/icon--social-twitter.svg" alt="Twitter-ikon"></a></div>
+			<div class="item-3"><a href="https://www.facebook.com/PomodoroPPB" target="blank"><img src="../assets/img/icon--social-facebook.svg" alt="Facebook-ikon"></a></div>
+			<div class="item-4"><a href="https://github.com/gabbijonsson/activime" target="blank"><img src="../assets/img/icon--social-git.svg" alt="GitHub-ikon"></a></div>			
 		</div>
 	</footer>
 </template>
