@@ -1,87 +1,85 @@
 <template>
-	<div class="content">
-		<!-- <SettingsPage v-if="showSettings"/> -->
-	<ApiHandler/>
-		<div class="firstPageContent">
-			<div class="weatherIcon">
-				<img src="../assets/img/icon--weather-sunny.svg" alt="weather">
-			</div>
-			<div class="greeting"> <h1> Välkommen till <br/> ActiveMe-appen, <br/> Användare!</h1> </div>
-			<p>{{ startDay }}</p>
-			<button>NU KÖR VI!</button>
-		</div>
-	</div>
-
+  <div class="content">
+	  		<!-- <SettingsPage v-if="showSettings"/> -->
+    <ApiHandler />
+	<div class="firstpage--bgimg-container"></div>
+    <div class="firstpage--text-container">
+      <h1 class="greeting">{{ greeting }}</h1>
+      <p>{{ startDay }}</p>
+    </div>
+    <button class="start-sprint-button">NU KÖR VI!</button>
+  </div>
 </template>
 
 <script>
-import ApiHandler from './ApiHandler'
-
+import ApiHandler from "./ApiHandler";
 export default {
-name: 'FirstPage',
-components: {
-	ApiHandler,
-},
-data: () => ({
-	greeting: `Välkommen
-	till ActiveMe-app, 
+  name: "FirstPage",
+  components: {
+    ApiHandler
+  },
+  data: () => ({
+    greeting: `Välkommen
+	till ActiviMe,
 	Användare!`,
-	startDay: 'Är du redo att påbörja din arbetsdag?',
-	
-})
-}
+    startDay: "Är du redo att påbörja din arbetsdag?"
+  })
+};
 </script>
 
 <style scope>
-	/* .content{
-		position: absolute;
-		width: 375px;
-		height: 812px;
-		left: 0px;
-		top: 0px;
-		background: url(../assets/BackgroundImg.png);
-		mix-blend-mode: overlay;
-		filter: blur(10px);
-		} */
-	html{
-		background-color: #bbdadf;
-	}
-	.content{
-		text-align: center;		
-	}
-	.firstPageContent > button{
-		background-color: #77c9d4;
-		width: 13em;
-		height: 3em;
-		border-radius: 20px;
-		border: 0em;
-		box-shadow: 1px 6px #999;
-		font-weight: 600;
-		font-size: 18px;
-		cursor: pointer;
-	}
-	.firstPageContent > button:active{
-		box-shadow: 0 5px #666;
-		transform: translateY(4px);
-	}
-	h1{
-		font-weight: 600;
-	}
-	p{
-		
-		font-size: 18px;		
-	}
-	p:first-child{
-		margin-top: 5em;
-	}
-	.greeting{
-		margin-top: 15em;
-	}
-	.weatherIcon > img{
-		position: absolute;
-		top: 95px;
-		left: 18px;		
-		height: 120px;
-		width: 120px;
-	}
+html {
+  background-color: #bbdadf;
+}
+
+h1 {
+  font-weight: 600;
+}
+
+p {
+  margin-top: 5em;
+  font-size: 18px;
+}
+
+.content {
+	position: relative;
+	height: 100vh;
+	width: 100vw;
+  text-align: center;
+}
+
+.firstpage--bgimg-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+  background: linear-gradient(
+      0deg,
+      rgba(119, 201, 212, 0.4),
+      rgba(119, 201, 212, 0.4)
+    ),
+    url(../assets/img/background-rocks.jpg) no-repeat center center fixed;
+  background-size: auto;
+  filter: blur(5px);
+}
+
+.firstpage--text-container {
+  background-color: rgba(119, 201, 212, 0.7);
+}
+
+.start-sprint-button {
+  background-color: #77c9d4;
+  width: 13em;
+  height: 3em;
+  border-radius: 20px;
+  border: 0em;
+  box-shadow: 1px 6px #999;
+  font-weight: 600;
+  font-size: 18px;
+}
+.greeting {
+  margin-top: 3em;
+}
 </style>
