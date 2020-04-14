@@ -44,10 +44,10 @@ export default {
 		],
 		activityList: [
 			{id: 1, name: 'Promenad'},
-			{id: 1, name: 'Stretching'},
-			{id: 1, name: 'Avslappning'},
-			{id: 1, name: 'Fikapaus'},
-			{id: 1, name: 'Lunch'},
+			{id: 2, name: 'Stretching'},
+			{id: 3, name: 'Avslappning'},
+			{id: 4, name: 'Fikapaus'},
+			{id: 5, name: 'Lunch'},
 		]
 	}),
 	methods: {

@@ -1,7 +1,7 @@
 <template>
 	<div class="content">
-			//! Tid att utföra en "ToDo" ligger i "event.target.type"!
-		<div class="containerItems"><a :type="toDoList.estTime" :id="toDoList.id" v-on:click="select" @click="handleSelect">
+			<!-- //! Tid att utföra en "ToDo" ligger i "event.target.type"! -->
+		<div class="containerItems"><a :type="toDoList.estTime" :id="toDoList.id" @click="handleSelect">
 			{{ toDoList.name }}
 		</a></div>
 	</div>
@@ -14,16 +14,12 @@ export default {
 		toDoList: Object(null),
 	},
 	methods: {
-		handleSelect(){
+		handleSelect(event){
 			console.log('hello there!');
-			
-		},
-		select(event){
 			console.log(event.target.id);
 			console.log(event);
-			
-			
-		}
+		},
+		
 	}
 }
 </script>
@@ -35,5 +31,6 @@ export default {
 }
 a:hover{
 	cursor: pointer;
+	text-decoration: underline;
 }
 </style>
