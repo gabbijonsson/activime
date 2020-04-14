@@ -31,22 +31,18 @@ export default {
 html {
   background-color: #bbdadf;
 }
-
 h1 {
   font-weight: 600;
 }
-
 p {
   font-size: 18px;
 }
-
 .content {
   position: relative;
   height: 100%;
   width: 100%;
   text-align: center;
 }
-
 .firstpage--bgimg-container {
   position: absolute;
   top: 0;
@@ -63,7 +59,6 @@ p {
   background-size: auto;
   filter: blur(5px);
 }
-
 .firstpage--text-container {
   position: absolute;
   top: 50%;
@@ -72,7 +67,6 @@ p {
   transform: translate(-50%, -50%);
   background-color: rgba(119, 201, 212, 0.7);
 }
-
 .start-sprint-button {
   background-color: #77c9d4;
   width: 13em;
@@ -85,7 +79,6 @@ p {
   cursor: pointer;
   margin-bottom: 2em;
 }
-
 .start-sprint-button:active {
   box-shadow: 0 5px #666;
   transform: translateY(4px);
