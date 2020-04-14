@@ -11,24 +11,13 @@
             </li>
         </ul>
     </div>
-    <div class="listdisplay-container--worklist">
-        <h1>ARBETSUPPGIFTER</h1>
-        <button class="listdisplay-container--worklist--addnewbtn">LÄGG TILL NY</button>
-        <ul>
-            <li class="listdisplay-container listdisplay-container--work" v-for="worktask in worklist" :key="worktask.id">
-                <p>{{ worktask.title }}</p>
-                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--worklist--changebtn"> ÄNDRA </button>
-                <button class="listdisplay-container--worklist--deletebtn"> TA BORT </button></div>
-            </li>
-        </ul>
-    </div>
 </div>
 
 </template>
 
 <script>
 export default {
-    name: 'ListDisplay',
+    name: 'ActivityListDisplay',
     data: () => ({
         activitylist: [
             { 
@@ -96,28 +85,6 @@ export default {
                 pausLength: 20,
                 weatherCondition: 1
             }
-        ],
-        worklist: [
-            { 
-                title: 'Inköpsorder A4-papper',
-                id: 1,
-            }, 
-            { 
-                title: 'Fakturagodkännanden',
-                id: 2,
-            }, 
-            { 
-                title: 'Leverantörsfakturor',
-                id: 3,
-            },
-            { 
-                title: 'Lönelistor',
-                id: 4,
-            },
-            { 
-                title: 'Kontoavstämning',
-                id: 5,
-            }
         ]
     })
 }
@@ -142,12 +109,9 @@ p {
     align-self: center;
 }
 
-.listdisplay-container--activitylist, .listdisplay-container--worklist {
+.listdisplay-container--activitylist {
     max-width: 1000px;
     margin: auto;
-}
-
-.listdisplay-container--worklist {
     margin-bottom: 6em;
 }
 
