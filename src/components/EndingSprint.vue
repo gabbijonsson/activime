@@ -5,7 +5,7 @@
             Dags för en paus,<br>Förslag:<br>{{ förslag }}</p>
             <p class="">
                 blev du färdig med<br> {{ currentTask }} ? <br>
-                <button id="yesIdid">JA</button>
+                <button id="yesIdid" v-on:click="deleteTask">JA</button>
                 <button id="noIdidnt">NEJ</button>
             </p>
         </div>
@@ -29,7 +29,12 @@ export default {
   data: () => ({
     //förslagslista: "aktivitetslista",
     //currentTask: "???"
-  })
+  }),
+  methods: {
+		deleteTask: function(event) {
+			this.currentTask = 'delete';  // this refererar till data-objektet
+		}
+	}
 };
 </script>
 

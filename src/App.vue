@@ -3,9 +3,8 @@
 		<Header
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
-		<FirstPage v-if="showSettings"/> <!-- Ska in i router -->
+		<FirstPage v-if="showFirstPage"/> <!-- Ska in i router -->
 		<SettingsPage v-if="showSettings"/> <!-- Ska in i router -->
-		<EndingSprint/>
 		<Footer/>
 	</div>
 </template>
@@ -15,7 +14,6 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
-import EndingSprint from './components/EndingSprint'
 
 export default {
 	name: 'App',
@@ -23,8 +21,7 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
-		SettingsPage,
-		EndingSprint
+		SettingsPage
 	},
 	data: () => ({
 		showSettings: false,
