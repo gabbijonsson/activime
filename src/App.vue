@@ -7,9 +7,14 @@
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
-		<BeforeSprint  
-		v-bind:toDoList="toDoItem"
-		v-for="toDoItem in toDoList" :key="toDoItem.id"/>
+			<BeforeSprint  
+			v-bind:toDoList="toDoItem"
+			v-for="toDoItem in toDoList" :key="toDoItem.id"/>
+		</div>
+		<div v-if="showFinishedTasks">
+			<h1>JIPPI!</h1>
+			<H3>Du har hunnit med en hel del idag!</H3>
+			<FinishedTasks/>
 		</div>
 		<SettingsPage v-if="showSettings"/>
 
@@ -23,6 +28,7 @@ import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
 import BeforeSprint from './components/BeforeSprint'
+import FinishedTasks from './components/FinishedTasks'
 
 export default {
 	name: 'App',
@@ -33,12 +39,14 @@ export default {
 
 		SettingsPage,
 		BeforeSprint,
+		FinishedTasks,
 
 	},
 	data: () => ({
 		showSettings: false,
 		showFirstPage: true,
 		showBeforeSprint: false,
+		showFinishedTasks: false,
 		toDoList: [
 			{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
 			{id: 2, name: 'Fakturagodkännande', estTime: 120},
@@ -59,11 +67,15 @@ export default {
 			console.log(event);
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
+			this.showBeforeSprint = false
+			this.showFinishedTasks = false
 		},
 		showsettings(event){
 			console.log(event);
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
+			this.showBeforeSprint = false
+			this.showFinishedTasks = false
 		},
 		showBfSprint(event){
 			console.log(event);
