@@ -1,14 +1,17 @@
 <template>
-  <div class="content">
-    <!-- <SettingsPage v-if="showSettings"/> -->
-    <ApiHandler />
-    <div class="firstpage--bgimg-container"></div>
+
+	<div class="content">
+	<ApiHandler/>
+		<div class="firstPageContent">
+			<div class="firstpage--bgimg-container"></div>
     <div class="firstpage--text-container">
       <h1 class="greeting">{{ greeting }}</h1>
       <p>{{ startDay }}</p>
-      <button class="start-sprint-button">NU KÖR VI!</button>
-    </div>
-  </div>
+			<button @click="handleNextPage">NU KÖR VI!</button>
+		</div>
+	</div>
+
+
 </template>
 
 <script>
@@ -22,9 +25,18 @@ export default {
     greeting: `Välkommen
 	till ActiviMe,
 	Användare!`,
-    startDay: "Är du redo att påbörja din arbetsdag?"
-  })
-};
+
+	startDay: 'Är du redo att påbörja din arbetsdag?',
+	showBeforeSprint: Boolean,
+}),
+methods: {
+	handleNextPage(){
+		this.showBeforeSprint = true
+		this.$emit('showBfSprint', this.showBeforeSprint)
+	}
+},
+}
+
 </script>
 
 <style scope>
