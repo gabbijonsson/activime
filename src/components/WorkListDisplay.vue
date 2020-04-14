@@ -2,12 +2,12 @@
 <div class="content">
     <div class="listdisplay-container--worklist">
         <h1>ARBETSUPPGIFTER</h1>
-        <button class="listdisplay-container--worklist--addnewbtn">LÄGG TILL NY</button>
+        <button class="listdisplay-container--worklist--addnewbtn" @click="addNewWorkTask()">LÄGG TILL NY</button>
         <ul>
             <li class="listdisplay-container listdisplay-container--work" v-for="worktask in worklist" :key="worktask.id">
                 <p>{{ worktask.title }}</p>
-                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--worklist--changebtn"> ÄNDRA </button>
-                <button class="listdisplay-container--worklist--deletebtn"> TA BORT </button></div>
+                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--worklist--changebtn" @click="editWorkTask(worktask.id)"> ÄNDRA </button>
+                <button class="listdisplay-container--worklist--deletebtn" @click="removeWorkTask(worktask.id)"> TA BORT </button></div>
             </li>
         </ul>
     </div>
@@ -23,25 +23,41 @@ export default {
             { 
                 title: 'Inköpsorder A4-papper',
                 id: 1,
+                finished: false
             }, 
             { 
                 title: 'Fakturagodkännanden',
                 id: 2,
+                finished: false
             }, 
             { 
                 title: 'Leverantörsfakturor',
                 id: 3,
+                finished: false
             },
             { 
                 title: 'Lönelistor',
                 id: 4,
+                finished: false
             },
             { 
                 title: 'Kontoavstämning',
                 id: 5,
+                finished: false
             }
         ]
-    })
+    }),
+    methods: {
+        editWorkTask: (id) => {
+            console.log('Ändra ' + id)
+        },
+        removeWorkTask: (id) => {
+            console.log('Ta bort ' + id)
+        },
+        addNewWorkTask: () => {
+            console.log('Lägg till arbetsuppgift')
+        }
+    }
 }
 </script>
 

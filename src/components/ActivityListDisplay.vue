@@ -2,12 +2,12 @@
 <div class="content">
     <div class="listdisplay-container--activitylist">
         <h1>AKTIVITETSLISTA</h1>
-        <button class="listdisplay-container--activitylist--addnewbtn">LÄGG TILL NY</button>
+        <button class="listdisplay-container--activitylist--addnewbtn" @click="addNewActivity()">LÄGG TILL NY</button>
         <ul>
             <li class="listdisplay-container listdisplay-container--activity" v-for="activity in activitylist" :key="activity.id">
                 <p>{{ activity.title }}</p>
-                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--activitylist--changebtn"> ÄNDRA </button>
-                <button class="listdisplay-container--activitylist--deletebtn"> TA BORT </button></div>
+                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--activitylist--changebtn" @click="editActivity(activity.id)"> ÄNDRA </button>
+                <button class="listdisplay-container--activitylist--deletebtn" @click="removeActivity(activity.id)"> TA BORT </button></div>
             </li>
         </ul>
     </div>
@@ -86,7 +86,19 @@ export default {
                 weatherCondition: 1
             }
         ]
-    })
+    }),
+    methods: {
+        removeActivity: (id) => {
+            console.log('Ta bort ' + id)
+        },
+        editActivity: (id) => {
+            console.log('Ändra ' + id)
+        },
+        addNewActivity: () => {
+            console.log('Lägg till aktivitet')
+        }
+        
+    }
 }
 </script>
 
