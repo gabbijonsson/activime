@@ -1,10 +1,18 @@
 <template>
+
 	<div id="app" class="spa--layout">
-		<Header
+		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
-		<FirstPage v-if="showFirstPage"/> <!-- Ska in i router -->
-		<SettingsPage v-if="showSettings"/> <!-- Ska in i router -->
+		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
+		<div v-if="showBeforeSprint">
+			<h2>Vilken uppgift vill du jobba med idag?</h2>
+		<BeforeSprint  
+		v-bind:toDoList="toDoItem"
+		v-for="toDoItem in toDoList" :key="toDoItem.id"/>
+		</div>
+		<SettingsPage v-if="showSettings"/>
+
 		<Footer/>
 	</div>
 </template>
@@ -14,6 +22,7 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
+import BeforeSprint from './components/BeforeSprint'
 
 export default {
 	name: 'App',
@@ -21,11 +30,29 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
-		SettingsPage
+
+		SettingsPage,
+		BeforeSprint,
+
 	},
 	data: () => ({
 		showSettings: false,
 		showFirstPage: true,
+		showBeforeSprint: false,
+		toDoList: [
+			{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
+			{id: 2, name: 'Fakturagodkännande', estTime: 120},
+			{id: 3, name: 'Skolarbete', estTime: 433},
+			{id: 4, name: 'Deklarera' , estTime: 322},
+			{id: 5, name: 'Kreditbedömningar' , estTime: 653}
+		],
+		activityList: [
+			{id: 1, name: 'Promenad'},
+			{id: 2, name: 'Stretching'},
+			{id: 3, name: 'Avslappning'},
+			{id: 4, name: 'Fikapaus'},
+			{id: 5, name: 'Lunch'},
+		]
 	}),
 	methods: {
 		showHome(event){
@@ -37,6 +64,12 @@ export default {
 			console.log(event);
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
+		},
+		showBfSprint(event){
+			console.log(event);
+			this.showBeforeSprint = event;
+			this.showSettings = false;
+			this.showFirstPage = false;
 		}
 	},
 }
@@ -69,6 +102,7 @@ body, html {
 	align-items: center;
 }
 
+
 Header {
 	flex: 0 1 auto;
 	z-index: 2;
@@ -84,6 +118,17 @@ Footer {
 
 FirstPage {
 	flex: 1 1 auto;
+}
+
+
+html{
+		background-color: #bbdadf;
+	}
+h2{
+	margin-top: 5em;
+	margin-bottom: 4em;
+	text-decoration: underline;
+	text-align: center;
 }
 
 </style>
