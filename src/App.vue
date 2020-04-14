@@ -1,5 +1,6 @@
 <template>
-	<div id="app" >
+
+	<div id="app" class="spa--layout">
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
@@ -11,6 +12,7 @@
 		v-for="toDoItem in toDoList" :key="toDoItem.id"/>
 		</div>
 		<SettingsPage v-if="showSettings"/>
+
 		<Footer/>
 	</div>
 </template>
@@ -28,8 +30,10 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
+
 		SettingsPage,
 		BeforeSprint,
+
 	},
 	data: () => ({
 		showSettings: false,
@@ -72,14 +76,51 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+	box-sizing: border-box;
+}
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
 #app {
-	font-family: Montserrat;
+	font-family: 'Montserrat', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	/* text-align: center; */
 	color: #2c3e50;
-	/* margin-top: 60px; */	
+	width: 100vw;
+	height: 100vh;
 }
+
+.spa--layout {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+
+Header {
+	flex: 0 1 auto;
+	z-index: 2;
+	position: relative;
+
+}
+
+Footer {
+	flex: 0 1 auto;
+	z-index: 2;
+	position: relative;
+}
+
+FirstPage {
+	flex: 1 1 auto;
+}
+
+
 html{
 		background-color: #bbdadf;
 	}
@@ -89,4 +130,5 @@ h2{
 	text-decoration: underline;
 	text-align: center;
 }
+
 </style>
