@@ -1,7 +1,6 @@
 <template>
   <div class="content">
     <!-- <SettingsPage v-if="showSettings"/> -->
-    <ApiHandler />
     <div class="firstpage--bgimg-container"></div>
     <div class="firstpage--text-container">
       <h1 class="greeting">{{ greeting }}</h1>
@@ -12,12 +11,8 @@
 </template>
 
 <script>
-import ApiHandler from "./ApiHandler";
 export default {
   name: "FirstPage",
-  components: {
-    ApiHandler
-  },
   data: () => ({
     greeting: `Välkommen
 	till ActiviMe,

@@ -4,6 +4,7 @@
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
+		<WeatherInfo v-if="weatherIconEnabled" />
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
@@ -14,9 +15,14 @@
 			<H3>Du har hunnit med en hel del idag!</H3>
 			<FinishedTasks/>
 		</div>
+
 		<SettingsPage v-if="showSettings"/>
 		<DuringSprint v-if="showDuringSprint"/>
 		<WorkListDisplay v-show="!hidden"/>
+
+		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
+
+
 		<Footer/>
 	</div>
 </template>
@@ -28,20 +34,29 @@ import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
 import BeforeSprint from './components/BeforeSprint'
 import FinishedTasks from './components/FinishedTasks'
+
 import WorkListDisplay from './components/WorkListDisplay'
 import DuringSprint from './components/DuringSprint'
+
+import WeatherInfo from './components/WeatherInfo'
+
+
 export default {
 	name: 'App',
 	components: {
 		Header,
 		Footer,
 		FirstPage,
-
 		SettingsPage,
 		BeforeSprint,
 		DuringSprint,
 		FinishedTasks,
+
 		WorkListDisplay,
+
+		WeatherInfo
+
+
 	},
 	data: () => ({
 		hidden: true,
@@ -50,20 +65,9 @@ export default {
 		showFirstPage: true,
 		showBeforeSprint: false,
 		showFinishedTasks: false,
-		// toDoList: [
-		// 	{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
-		// 	{id: 2, name: 'Fakturagodkännande', estTime: 120},
-		// 	{id: 3, name: 'Skolarbete', estTime: 433},
-		// 	{id: 4, name: 'Deklarera' , estTime: 322},
-		// 	{id: 5, name: 'Kreditbedömningar' , estTime: 653}
-		// ],
-		// activityList: [
-		// 	{id: 1, name: 'Promenad'},
-		// 	{id: 2, name: 'Stretching'},
-		// 	{id: 3, name: 'Avslappning'},
-		// 	{id: 4, name: 'Fikapaus'},
-		// 	{id: 5, name: 'Lunch'},
-		// ]
+
+		weatherIconEnabled: true
+
 	}),
 	methods: {
 		showHome(event){
@@ -87,13 +91,20 @@ export default {
 			this.showBeforeSprint = event;
 			this.showSettings = false;
 			this.showFirstPage = false;
+
 			this.showDuring = false
 		},
 		showDuring(event){
 			console.log(event);
 			this.showDuringSprint = event;
 			this.showBeforeSprint = false
+
+		},
+		toggleWeather(event){
+			this.weatherIconEnabled = event;
+
 		}
+
 	},
 }
 </script>
