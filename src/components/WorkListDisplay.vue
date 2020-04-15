@@ -67,13 +67,7 @@ export default {
         editWorkTask: (id) => {
             console.log('Ändra ' + id)
         },
-        
-    },
-   created(){
-       eventBus.$emit('workList', this.worklist)
-   }
-
-            saveToLocalStorage: function (optionalList) {
+         saveToLocalStorage: function (optionalList) {
                 let listToSave = optionalList ? optionalList : this.worklist;
                 localStorage.setItem('worklist', JSON.stringify(listToSave))
             },
@@ -94,9 +88,9 @@ export default {
                 }
                 this.worklist.push(newTask)
                 this.saveToLocalStorage()
-            },            
-           
-    }  
+            }, 
+        
+    }, 
 
 }
 
