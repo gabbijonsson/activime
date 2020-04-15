@@ -22,7 +22,7 @@
 
 		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
 
-
+		<EndDay @theEnd="endThisDay($event)" v-if="showDuringSprint"/>
 		<Footer/>
 	</div>
 </template>
@@ -37,6 +37,7 @@ import FinishedTasks from './components/FinishedTasks'
 import WorkListDisplay from './components/WorkListDisplay'
 import DuringSprint from './components/DuringSprint'
 import WeatherInfo from './components/WeatherInfo'
+import EndDay from './components/EndDay';
 
 
 export default {
@@ -49,11 +50,9 @@ export default {
 		BeforeSprint,
 		DuringSprint,
 		FinishedTasks,
-
 		WorkListDisplay,
-
-		WeatherInfo
-
+		WeatherInfo,
+		EndDay
 
 	},
 	data: () => ({
@@ -63,7 +62,6 @@ export default {
 		showFirstPage: true,
 		showBeforeSprint: false,
 		showFinishedTasks: false,
-		showThisDuring: false,
 		weatherIconEnabled: true,
 		
 	}),
@@ -100,9 +98,12 @@ export default {
 		},
 		toggleWeather(event){
 			this.weatherIconEnabled = event;
-
+		},
+		endThisDay(event){
+			this.showFinishedTasks = event;
+			this.showBeforeSprint = false
+			this.showDuringSprint = false
 		}
-
 	},
 }
 </script>

@@ -8,13 +8,12 @@
         class="during-sprint--time-left"
       >Det är {{ timeLeftTimer }} kvar <br> att jobba med {{ currentTask }}</p>
     </div>
-    <EndDay/>
     <BeforeSprint v-show="!keepHidden"/>
   </div>
 </template>
 
 <script>
-import EndDay from './EndDay';
+
 import {eventBus} from "../main";
 import BeforeSprint from './BeforeSprint'
 export default {
@@ -26,21 +25,17 @@ export default {
     keepHidden: true
   }),
   components: {
-      EndDay,
       BeforeSprint
   },
   methods:{
     theCurrentTask(){
-      console.log('current fuction');
-      
+      console.log('current fuction');      
       this.currentTask = eventBus.$emit('theCurrentTask', this.currentTask)
-      console.log('your current one', this.currentTask);
-      
+      console.log('your current one', this.currentTask);      
     }
   },
   created(){
-    console.log('during created');
-    
+    console.log('during created');    
     eventBus.$on('theCurrentTask', (theSelected) => {
       this.currentTask = theSelected;
       console.log(theSelected);
@@ -55,10 +50,9 @@ p {
     font-size: 2em;
     margin: 3em 0;
 }
-
 .during-sprint--text-container {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   width: 100vw;
   transform: translate(-50%, -50%);
