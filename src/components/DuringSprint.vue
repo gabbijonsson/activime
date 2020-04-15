@@ -3,10 +3,10 @@
     <div class="during-sprint--text-container">
       <p
         class="during-sprint--time-spent"
-      >Du har jobbat i {{ timeSpentTimer }} <br> sedan din senaste paus.</p>
+      >Du har jobbat i {{ timeSpentTimer }} <br> minuter sedan din senaste paus.</p>
       <p
         class="during-sprint--time-left"
-      >Det är {{ timeLeftTimer }} kvar <br> att jobba med {{ currentTask }}</p>
+      >Det är {{ timeLeftTimer }} minuter kvar <br> att jobba med {{ currentTask.title }}</p>
     </div>
     <EndDay/>
     <BeforeSprint v-show="!keepHidden"/>
@@ -15,37 +15,33 @@
 
 <script>
 import EndDay from './EndDay';
-import {eventBus} from "../main";
 import BeforeSprint from './BeforeSprint'
 export default {
   name: "DuringSprint",
   data: () => ({
-    timeSpentTimer: Number,
-    timeLeftTimer: Number,
     currentTask: '',
+    timeSpentTimer: 0,
+    timeLeftTimer: 25,
+    timer: {},
     keepHidden: true
   }),
   components: {
       EndDay,
       BeforeSprint
   },
-  methods:{
-    theCurrentTask(){
-      console.log('current fuction');
-      
-      this.currentTask = eventBus.$emit('theCurrentTask', this.currentTask)
-      console.log('your current one', this.currentTask);
-      
-    }
-  },
   created(){
+
+    this.timer = setInterval(() => {
+      this.timeSpentTimer++;
+      this.timeLeftTimer--;
+      if (this.timeLeftTimer <= 0) {
+        clearInterval(this.timer);
+      }
+    }, 500); //time flies
+    
     console.log('during created');
     
-    eventBus.$on('theCurrentTask', (theSelected) => {
-      this.currentTask = theSelected;
-      console.log(theSelected);
-			console.log(this.currentTask);
-    })
+    this.currentTask = JSON.parse(localStorage.getItem('currentTask'));
   }
 };
 </script>

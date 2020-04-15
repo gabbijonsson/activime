@@ -1,6 +1,6 @@
 <template>
 	<div class="content">
-		<div class="containerItems"><a @click="handleSelect($event)" v-for="worktask in worklist" :key="worktask.id" :id="worktask.id" :title="worktask.title">
+		<div class="containerItems"><a @click="handleSelect(worktask)" v-for="worktask in worklist" :key="worktask.id" :id="worktask.id" :title="worktask.title">
 			{{ worktask.title }}
 		</a></div>
 		<WorkListDisplay v-show="!keepHidden"/>
@@ -20,14 +20,11 @@ export default {
 	}),
 	components: {WorkListDisplay},
 	methods: {
-		handleSelect(event){
-			console.log('I want to work with you!', event.target.title);
-			console.log(event.target.id);
-			console.log(event);
-			this.currentTask = event.target.title;
-			eventBus.$emit('currentTask', this.currentTask)
+		handleSelect(task){
+			console.log('task selected: ' + task.title)
+			localStorage.setItem('currentTask', JSON.stringify(task))
 			this.$emit('showDuring', this.showDuringSprint)
-			
+
 		},		
 		reciveList(){
 			this.worklist = eventBus.$emit('workList', this.worklist)			
@@ -47,14 +44,6 @@ export default {
 			console.log(recivedList);
 		})
 	},
-
-	// created(){
-	// 	eventBus.$on('workList', (recivedList) => {
-	// 		this.worklist = recivedList
-	// 		console.log(this.worklist);
-	// 		console.log(recivedList);			
-	// 	}),
-	// }
 }
 </script>
 
