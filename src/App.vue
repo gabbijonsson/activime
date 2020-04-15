@@ -17,8 +17,10 @@
 		</div>
 
 		
-		<DuringSprint v-if="showDuringSprint"/>
+		<DuringSprint @showEndingSprint="endSprint()" v-if="showDuringSprint"/>
 		<WorkListDisplay v-show="!hidden"/>
+
+		<EndingSprint v-if="showEndingSprint"/>
 
 		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
 
@@ -37,6 +39,7 @@ import FinishedTasks from './components/FinishedTasks'
 import WorkListDisplay from './components/WorkListDisplay'
 import DuringSprint from './components/DuringSprint'
 import WeatherInfo from './components/WeatherInfo'
+import EndingSprint from './components/EndingSprint'
 
 
 export default {
@@ -49,9 +52,8 @@ export default {
 		BeforeSprint,
 		DuringSprint,
 		FinishedTasks,
-
+		EndingSprint,
 		WorkListDisplay,
-
 		WeatherInfo
 
 
@@ -59,6 +61,7 @@ export default {
 	data: () => ({
 		hidden: true,
 		showDuringSprint: false,
+		showEndingSprint: false,
 		showSettings: false,
 		showFirstPage: true,
 		showBeforeSprint: false,
@@ -73,6 +76,7 @@ export default {
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
+			this.showEndingSprint = false
 			this.showFinishedTasks = false
 			this.showDuringSprint = false
 		},
@@ -81,6 +85,7 @@ export default {
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
+			this.showEndingSprint = false
 			this.showFinishedTasks = false
 			this.showDuringSprint = false
 		},
@@ -97,6 +102,10 @@ export default {
 			this.showDuringSprint = event;
 			this.showBeforeSprint = false
 
+		},
+		endSprint(){
+			this.showDuringSprint = false;
+			this.showEndingSprint = true;
 		},
 		toggleWeather(event){
 			this.weatherIconEnabled = event;

@@ -35,9 +35,10 @@ export default {
       this.timeSpentTimer++;
       this.timeLeftTimer--;
       if (this.timeLeftTimer <= 0) {
+        this.$emit('showEndingSprint');
         clearInterval(this.timer);
       }
-    }, 500); //time flies
+    }, 100); //time flies
     
     console.log('during created');
     
