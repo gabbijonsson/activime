@@ -7,6 +7,7 @@ axios.defaults.baseURL = 'http://127.0.0.1:3333'
 Vue.use(VueAxios, axios);
 
 Vue.config.productionTip = false
+export const eventBus = new Vue();
 
 new Vue({
   render: h => h(App),

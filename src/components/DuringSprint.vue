@@ -14,7 +14,7 @@
 
 <script>
 import EndDay from './EndDay';
-
+import {eventBus} from "../main";
 export default {
   name: "DuringSprint",
   data: () => ({
@@ -24,6 +24,15 @@ export default {
   }),
   components: {
       EndDay
+  },
+  created(){
+    eventBus.$on('currentTask', (currentTask) => {
+			this.currentTask = currentTask
+			console.log(this.currentTask);
+			console.log(currentTask);			
+		}),
+		console.log('created', this.currentTask);
+			console.log('created again', this.currentTask);
   }
 };
 </script>
