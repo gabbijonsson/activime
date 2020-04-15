@@ -36,7 +36,7 @@ export default {
         this.$emit('showEndingSprint');
         clearInterval(this.timer);
       }
-    }, 100); //time flies
+    }, 500); //time flies
     
     console.log('during created');
     

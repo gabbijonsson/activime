@@ -72,11 +72,8 @@ export default {
                 localStorage.setItem('worklist', JSON.stringify(listToSave))
             },
             removeWorkTask: function (id) {
-                console.log('id ' + id)
                 let index = this.worklist.findIndex((workTask) => workTask.id === id);
-                console.log('index ' + index);
                 this.worklist.splice(index, 1);
-                console.log('worklist is ' + this.worklist)
                 this.saveToLocalStorage()
             },
             addNewWorkTask: function (newTaskTitle) {

@@ -20,7 +20,7 @@
 		<DuringSprint @showEndingSprint="endSprint()" v-if="showDuringSprint"/>
 		<WorkListDisplay v-show="!hidden"/>
 
-		<EndingSprint v-if="showEndingSprint"/>
+		<EndingSprint @showBfSprint="showBfSprint($event)" v-if="showEndingSprint"/>
 
 		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
 
@@ -95,7 +95,7 @@ export default {
 			this.showBeforeSprint = event;
 			this.showSettings = false;
 			this.showFirstPage = false;
-
+			this.showEndingSprint = false;
 			this.showDuringSprint = false
 		},
 		showthisDuring(event){

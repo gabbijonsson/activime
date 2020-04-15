@@ -9,7 +9,7 @@
             Blev du färdig med {{ currentTask.title }}?
         </p>
         <button @click="endTask">JA</button>
-        <button>NEJ</button>
+        <button @click="endSprint">NEJ</button>
     </div>
   </div>
 </template>
@@ -33,17 +33,21 @@ export default {
   },
   methods: {
     endTask: function() {
-        let finishedTasks = JSON.parse(localStorage.getItem('finishedTasks'));
-        if(!finishedTasks) {
-            finishedTasks = [];
-        }
-        finishedTasks.push(this.currentTask);
-        localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
-
+        // let finishedTasks = JSON.parse(localStorage.getItem('finishedTasks'));
+        // if(!finishedTasks) {
+        //     finishedTasks = [];
+        // }
+        // finishedTasks.push(this.currentTask);
+        // localStorage.setItem('finishedTasks', JSON.stringify(finishedTasks));
         let worklist = JSON.parse(localStorage.getItem('worklist'));
-        let index = worklist.findIndex((workTask) => workTask.title === this.currentTask);
-        worklist.splice(index, 1);
+        let index = worklist.findIndex((workTask) => workTask.id === this.currentTask.id);
+        worklist[index].finished = true;
         localStorage.setItem('worklist', JSON.stringify(worklist));
+        this.endSprint();
+    },
+    endSprint: function() {
+        console.log('in endSprint');
+        this.$emit('showBfSprint', true);
     }
   },
   created(){
