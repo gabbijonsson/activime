@@ -4,6 +4,7 @@
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
+		<WeatherInfo v-if="weatherIconEnabled" />
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
@@ -16,7 +17,7 @@
 			<H3>Du har hunnit med en hel del idag!</H3>
 			<FinishedTasks/>
 		</div>
-		<SettingsPage v-if="showSettings"/>
+		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
 
 		<Footer/>
 	</div>
@@ -29,6 +30,7 @@ import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
 import BeforeSprint from './components/BeforeSprint'
 import FinishedTasks from './components/FinishedTasks'
+import WeatherInfo from './components/WeatherInfo'
 
 export default {
 	name: 'App',
@@ -36,10 +38,10 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
-
 		SettingsPage,
 		BeforeSprint,
 		FinishedTasks,
+		WeatherInfo
 
 	},
 	data: () => ({
@@ -60,7 +62,8 @@ export default {
 			{id: 3, name: 'Avslappning'},
 			{id: 4, name: 'Fikapaus'},
 			{id: 5, name: 'Lunch'},
-		]
+		],
+		weatherIconEnabled: true
 	}),
 	methods: {
 		showHome(event){
@@ -82,7 +85,11 @@ export default {
 			this.showBeforeSprint = event;
 			this.showSettings = false;
 			this.showFirstPage = false;
+		},
+		toggleWeather(event){
+			this.weatherIconEnabled = event;
 		}
+
 	},
 }
 </script>
