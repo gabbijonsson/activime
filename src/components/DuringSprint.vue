@@ -8,13 +8,12 @@
         class="during-sprint--time-left"
       >Det är {{ timeLeftTimer }} minuter kvar <br> att jobba med {{ currentTask.title }}</p>
     </div>
-    <EndDay/>
     <BeforeSprint v-show="!keepHidden"/>
   </div>
 </template>
 
 <script>
-import EndDay from './EndDay';
+
 import BeforeSprint from './BeforeSprint'
 export default {
   name: "DuringSprint",
@@ -26,7 +25,6 @@ export default {
     keepHidden: true
   }),
   components: {
-      EndDay,
       BeforeSprint
   },
   created(){
@@ -51,10 +49,9 @@ p {
     font-size: 2em;
     margin: 3em 0;
 }
-
 .during-sprint--text-container {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   width: 100vw;
   transform: translate(-50%, -50%);
