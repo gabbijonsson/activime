@@ -14,8 +14,8 @@
 </div>
 
 </template>
-
 <script>
+import {eventBus} from "../main";
 export default {
     name: 'WorkListDisplay',
     data: () => ({
@@ -56,8 +56,14 @@ export default {
         },
         addNewWorkTask: () => {
             console.log('Lägg till arbetsuppgift')
+        },
+        sendList(){
+            eventBus.$emit('workList', this.worklist)
         }
-    }
+    },
+   created(){
+       eventBus.$emit('workList', this.worklist)
+   }
 }
 </script>
 
