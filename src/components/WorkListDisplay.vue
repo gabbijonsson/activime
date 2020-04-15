@@ -57,9 +57,9 @@ export default {
         addNewWorkTask: () => {
             console.log('Lägg till arbetsuppgift')
         },
-        sendList(){
-            eventBus.$emit('workList', this.worklist)
-        }
+        // sendList(){
+        //     eventBus.$emit('workList', this.worklist)
+        // }
     },
    created(){
        eventBus.$emit('workList', this.worklist)

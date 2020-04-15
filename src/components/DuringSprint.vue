@@ -9,30 +9,43 @@
       >Det är {{ timeLeftTimer }} kvar <br> att jobba med {{ currentTask }}</p>
     </div>
     <EndDay/>
+    <BeforeSprint v-show="!keepHidden"/>
   </div>
 </template>
 
 <script>
 import EndDay from './EndDay';
 import {eventBus} from "../main";
+import BeforeSprint from './BeforeSprint'
 export default {
   name: "DuringSprint",
   data: () => ({
     timeSpentTimer: Number,
     timeLeftTimer: Number,
-    currentTask: String
+    currentTask: '',
+    keepHidden: true
   }),
   components: {
-      EndDay
+      EndDay,
+      BeforeSprint
+  },
+  methods:{
+    theCurrentTask(){
+      console.log('current fuction');
+      
+      this.currentTask = eventBus.$emit('theCurrentTask', this.currentTask)
+      console.log('your current one', this.currentTask);
+      
+    }
   },
   created(){
-    eventBus.$on('currentTask', (currentTask) => {
-			this.currentTask = currentTask
+    console.log('during created');
+    
+    eventBus.$on('theCurrentTask', (theSelected) => {
+      this.currentTask = theSelected;
+      console.log(theSelected);
 			console.log(this.currentTask);
-			console.log(currentTask);			
-		}),
-		console.log('created', this.currentTask);
-			console.log('created again', this.currentTask);
+    })
   }
 };
 </script>
