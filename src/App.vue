@@ -16,7 +16,7 @@
 			<FinishedTasks/>
 		</div>
 
-		<SettingsPage v-if="showSettings"/>
+		
 		<DuringSprint v-if="showDuringSprint"/>
 		<WorkListDisplay v-show="!hidden"/>
 
