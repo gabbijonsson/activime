@@ -2,11 +2,14 @@
 <div class="content">
     <div class="listdisplay-container--worklist">
         <h1>ARBETSUPPGIFTER</h1>
-        <button class="listdisplay-container--worklist--addnewbtn" @click="addNewWorkTask()">LÄGG TILL NY</button>
+        <div class="listdisplay-container--worklist-addnew">
+            <input v-model="newWorkTaskTitle" placeholder="Ange arbetsuppgift här"/>
+            <button class="listdisplay-container--worklist--addnewbtn" @click="addNewWorkTask(newWorkTaskTitle)">LÄGG TILL NY</button>
+        </div>
         <ul>
             <li class="listdisplay-container listdisplay-container--work" v-for="worktask in worklist" :key="worktask.id">
                 <p>{{ worktask.title }}</p>
-                <div class="listdisplay-container--btncontainer"><button class="listdisplay-container--worklist--changebtn" @click="editWorkTask(worktask.id)"> ÄNDRA </button>
+                <div class="listdisplay-container--btncontainer">
                 <button class="listdisplay-container--worklist--deletebtn" @click="removeWorkTask(worktask.id)"> TA BORT </button></div>
             </li>
         </ul>
@@ -19,7 +22,8 @@ import {eventBus} from "../main";
 export default {
     name: 'WorkListDisplay',
     data: () => ({
-        worklist: [
+        newWorkTaskTitle: '',
+        defaultWorklist: [
             { 
                 title: 'Inköpsorder A4-papper',
                 id: 1,
@@ -45,26 +49,48 @@ export default {
                 id: 5,
                 finished: false
             }
-        ]
-    }),
-    methods: {
-        editWorkTask: (id) => {
-            console.log('Ändra ' + id)
-        },
-        removeWorkTask: (id) => {
-            console.log('Ta bort ' + id)
-        },
-        addNewWorkTask: () => {
-            console.log('Lägg till arbetsuppgift')
-        },
-        sendList(){
-            eventBus.$emit('workList', this.worklist)
+        ],
+        worklist: []
+    }),  
+    created(){
+        eventBus.$emit('workList', this.worklist);
+        let savedWorkList = JSON.parse(localStorage.getItem('worklist'));
+        if (savedWorkList && savedWorkList.length > 0) {
+            this.worklist = savedWorkList;
+        } else {
+            this.worklist = this.defaultWorklist;
+            this.saveToLocalStorage(this.defaultWorklist);
         }
     },
-   created(){
-       eventBus.$emit('workList', this.worklist)
-   }
+    methods: {
+            saveToLocalStorage: function (optionalList) {
+                let listToSave = optionalList ? optionalList : this.worklist;
+                localStorage.setItem('worklist', JSON.stringify(listToSave))
+            },
+            removeWorkTask: function (id) {
+                console.log('id ' + id)
+                let index = this.worklist.findIndex((workTask) => workTask.id === id);
+                console.log('index ' + index);
+                this.worklist.splice(index, 1);
+                console.log('worklist is ' + this.worklist)
+                this.saveToLocalStorage()
+            },
+            addNewWorkTask: function (newTaskTitle) {
+                let newId = this.worklist.length > 0 ? this.worklist[this.worklist.length-1].id+1 : 1;
+                let newTask = {
+                    title: newTaskTitle,
+                    id: newId,
+                    finished: false
+                }
+                this.worklist.push(newTask)
+                this.saveToLocalStorage()
+            },            
+            sendList(){
+            eventBus.$emit('workList', this.worklist)
+        }
+    }  
 }
+
 </script>
 
 <style scoped>
