@@ -8,7 +8,7 @@
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
-			<BeforeSprint @showDuring="showDuring($event)"/>
+			<BeforeSprint @showDuring="showthisDuring($event)"/>
 		</div>
 		<div v-if="showFinishedTasks">
 			<h1>JIPPI!</h1>
@@ -34,10 +34,8 @@ import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
 import BeforeSprint from './components/BeforeSprint'
 import FinishedTasks from './components/FinishedTasks'
-
 import WorkListDisplay from './components/WorkListDisplay'
 import DuringSprint from './components/DuringSprint'
-
 import WeatherInfo from './components/WeatherInfo'
 
 
@@ -65,9 +63,9 @@ export default {
 		showFirstPage: true,
 		showBeforeSprint: false,
 		showFinishedTasks: false,
-
-		weatherIconEnabled: true
-
+		showThisDuring: false,
+		weatherIconEnabled: true,
+		
 	}),
 	methods: {
 		showHome(event){
@@ -76,7 +74,7 @@ export default {
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
 			this.showFinishedTasks = false
-			this.showDuring = false
+			this.showDuringSprint = false
 		},
 		showsettings(event){
 			console.log(event);
@@ -84,7 +82,7 @@ export default {
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
 			this.showFinishedTasks = false
-			this.showDuring = false
+			this.showDuringSprint = false
 		},
 		showBfSprint(event){
 			console.log(event);
@@ -92,10 +90,10 @@ export default {
 			this.showSettings = false;
 			this.showFirstPage = false;
 
-			this.showDuring = false
+			this.showDuringSprint = false
 		},
-		showDuring(event){
-			console.log(event);
+		showthisDuring(event){
+			console.log('Inside the cursed app.vue', event);
 			this.showDuringSprint = event;
 			this.showBeforeSprint = false
 

@@ -15,7 +15,7 @@ export default {
 	data: () => ({
 		worklist: [],
 		keepHidden: true,
-		currentTask: String,
+		currentTask: '',
 		showDuringSprint: true,
 	}),
 	components: {WorkListDisplay},
@@ -27,20 +27,34 @@ export default {
 			this.currentTask = event.target.title;
 			eventBus.$emit('currentTask', this.currentTask)
 			this.$emit('showDuring', this.showDuringSprint)
-		},
+			
+		},		
 		reciveList(){
 			this.worklist = eventBus.$emit('workList', this.worklist)			
 		},
 	},
 	created(){
-		eventBus.$on('workList', (recivedList) => {
-			this.worklist = recivedList
-			console.log(this.worklist);
-			console.log(recivedList);			
+		eventBus.$on('theCurrentTask', (theSelected) => {
+			this.currentTask = theSelected;
+			console.log(theSelected);
+			console.log(this.currentTask);
+			
+			
 		}),
-		console.log('created', this.worklist);
-			console.log('created again', this.recivedList);
-	}
+		eventBus.$on('workList', (recivedList) => {
+			this.worklist = recivedList;
+			console.log(this.worklist);
+			console.log(recivedList);
+		})
+	},
+
+	// created(){
+	// 	eventBus.$on('workList', (recivedList) => {
+	// 		this.worklist = recivedList
+	// 		console.log(this.worklist);
+	// 		console.log(recivedList);			
+	// 	}),
+	// }
 }
 </script>
 
