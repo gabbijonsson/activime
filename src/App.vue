@@ -7,7 +7,7 @@
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
-			<BeforeSprint @showDuing="showDruing($event)"/>
+			<BeforeSprint @showDuring="showDuring($event)"/>
 		</div>
 		<div v-if="showFinishedTasks">
 			<h1>JIPPI!</h1>
@@ -49,7 +49,7 @@ export default {
 		showSettings: false,
 		showFirstPage: true,
 		showBeforeSprint: false,
-		showFinishedTasks: true,
+		showFinishedTasks: false,
 		// toDoList: [
 		// 	{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
 		// 	{id: 2, name: 'Fakturagodkännande', estTime: 120},

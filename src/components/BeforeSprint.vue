@@ -26,7 +26,7 @@ export default {
 			console.log(event);
 			this.currentTask = event.target.title;
 			eventBus.$emit('currentTask', this.currentTask)
-			this.$emit('showDuing', this.showDuringSprint)
+			this.$emit('showDuring', this.showDuringSprint)
 		},
 		reciveList(){
 			this.worklist = eventBus.$emit('workList', this.worklist)			
