@@ -53,7 +53,6 @@ export default {
         worklist: []
     }),  
     created(){
-        eventBus.$emit('workList', this.worklist);
         let savedWorkList = JSON.parse(localStorage.getItem('worklist'));
         if (savedWorkList && savedWorkList.length > 0) {
             this.worklist = savedWorkList;
@@ -61,6 +60,7 @@ export default {
             this.worklist = this.defaultWorklist;
             this.saveToLocalStorage(this.defaultWorklist);
         }
+        eventBus.$emit('workList', this.worklist);
     },
     methods: {
             saveToLocalStorage: function (optionalList) {
