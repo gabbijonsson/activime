@@ -1,5 +1,9 @@
 <template>
 	<div class="content">
+		<div class="container-finishedlist-text">
+			<h1>JIPPI!</h1>
+			<h2 class="subheader">Du har hunnit med en hel del idag</h2>
+		</div>
 		<div class="container-finishedlist"
 		v-for="task in doneTasks" :key="task.id">
 			{{ task.title }} 
@@ -39,6 +43,27 @@ export default {
 }
 </script>
 
+
 <style>
+
+.content {
+	margin-top: 10em;
+}
+
+h1 {
+	font-size: 3em;
+}
+
+.subheader {
+	text-decoration: none;
+	font-size: 2em;
+	margin: 2em;
+}
+
+.container-finishedlist {
+	display: block;
+	font-size: 1.5em;
+	padding: 1em;
+}
 
 </style>

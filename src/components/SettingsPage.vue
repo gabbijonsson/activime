@@ -4,22 +4,20 @@
 		<WorkListDisplay v-else-if="showWorkList"/>
 
 	<div v-else>
-		<!-- <div class="activityList">
-			<P>AKTIVITETSLISTA</P>
-			<button @click="editActList">REDIGERA</button>
-		</div> -->
 		<div class="toDoList">
 			<p>ARBETSUPPGIFTER</p>
 			<button @click="editWorkList">REDIGERA</button>
 		</div>
 		<div class="weatherSettings">
-			<p>VÄDER</p>
+			<p class="weatherTitle">VÄDER</p>
 			<div class="temp">		<!--Kan stylas bättre -->
-				<span class="item-1">Ange lägsta temperatur för <br/> utomhusaktiviteter</span> <span class="item-2"><input @change="emitDegreeValue($event)" class="item-" type="number" id="tempInput" placeholder="°C"><span class="item-3">grader</span></span> 
+				<span class="item-1">Ange lägsta temperatur för <br/> utomhusaktiviteter</span> 
+				<span class="item-2"><input @change="emitDegreeValue($event)" class="item-" type="number" id="tempInput" placeholder="°C">
+					<span class="item-3">grader</span>
+				</span> 
 			</div>
 			<div class="wheatherIconOnOff">
-				<label for="ifIcon">Visa vädersymbol under arbetspass</label> <input @change="emitCheckboxState($event)" id="ifIcon" type="checkbox" v-model="iconOnOff">
-				{{iconOnOff}}			
+				<label class="item-1" for="ifIcon">Visa vädersymbol <br/>under arbetspass<br/></label> <input @change="emitCheckboxState($event)" id="ifIcon" type="checkbox" v-model="iconOnOff">
 			</div>
 		</div>
 	</div>
@@ -94,35 +92,20 @@ export default {
 </script>
 
 <style scoped>
-.activityList{
-	margin-top: 8em;
+.weatherSettings {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	max-width: 80%;
+	margin: auto;
 }
-.temp{
-	display: flex;
-	justify-content: space-evenly;
-	align-content: center;
-	margin-top: 2em;
+.weatherTitle {
+	grid-column: 1 / 3;
 }
-.item-1{
 
+input {
+	margin-top: 1em;
 }
-.item-2{
-	display: flex;
-	
-}
-.item-{
-	width: 3em;
-	height: 1.5em;
-	margin-right: 1em;
-}
-.item-3{
-	
-}
-.wheatherIconOnOff{
-	margin-top: 2em;
-	display: flex;
-	justify-content: space-evenly;
-}
+
 .toDoList > p, .weatherSettings > p{
 	margin-top: 1em;
 }

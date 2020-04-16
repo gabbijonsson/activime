@@ -1,8 +1,11 @@
 <template>
 	<div class="content">
-		<div class="containerItems"><a @click="handleSelect(worktask)" v-for="worktask in avaliableWorkList" :key="worktask.id" :id="worktask.id" :title="worktask.title">
+		<div class="containerItems">
+			<h2>Vilken uppgift vill du jobba med idag?</h2>
+			<a @click="handleSelect(worktask)" v-for="worktask in avaliableWorkList" :key="worktask.id" :id="worktask.id" :title="worktask.title">
 			{{ worktask.title }}
-		</a></div>
+			</a>
+		</div>
 		<WorkListDisplay v-show="!keepHidden"/>
 	</div>
 </template>
@@ -68,10 +71,19 @@ export default {
 </script>
 
 <style scoped>
+h2 {
+	margin-top: 10em;
+}
 .containerItems{
-	margin-top: 2em;
+	margin: auto;
 	padding: 1em;
 }
+a {
+	display: block;
+	padding: 1em;
+	font-size: 1.5em;
+}
+
 a:hover{
 	cursor: pointer;
 	text-decoration: underline;
