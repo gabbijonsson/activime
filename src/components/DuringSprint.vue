@@ -3,27 +3,44 @@
     <div class="during-sprint--text-container">
       <p
         class="during-sprint--time-spent"
-      >Du har jobbat i {{ timeSpentTimer }} <br> sedan din senaste paus.</p>
+      >Du har jobbat i {{ timeSpentTimer }} <br> minuter sedan din senaste paus.</p>
       <p
         class="during-sprint--time-left"
-      >Det är {{ timeLeftTimer }} kvar <br> att jobba med {{ currentTask }}</p>
+      >Det är {{ timeLeftTimer }} minuter kvar <br> att jobba med {{ currentTask.title }}</p>
     </div>
-    <EndDay/>
+    <BeforeSprint v-show="!keepHidden"/>
   </div>
 </template>
 
 <script>
-import EndDay from './EndDay';
 
+import BeforeSprint from './BeforeSprint'
 export default {
   name: "DuringSprint",
   data: () => ({
-    timeSpentTimer: Number,
-    timeLeftTimer: Number,
-    currentTask: String
+    currentTask: '',
+    timeSpentTimer: 0,
+    timeLeftTimer: 25,
+    timer: {},
+    keepHidden: true
   }),
   components: {
-      EndDay
+      BeforeSprint
+  },
+  created(){
+
+    this.timer = setInterval(() => {
+      this.timeSpentTimer++;
+      this.timeLeftTimer--;
+      if (this.timeLeftTimer <= 0) {
+        this.$emit('showEndingSprint');
+        clearInterval(this.timer);
+      }
+    }, 500); //time flies
+    
+    console.log('during created');
+    
+    this.currentTask = JSON.parse(localStorage.getItem('currentTask'));
   }
 };
 </script>
@@ -33,10 +50,9 @@ p {
     font-size: 2em;
     margin: 3em 0;
 }
-
 .during-sprint--text-container {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   width: 100vw;
   transform: translate(-50%, -50%);

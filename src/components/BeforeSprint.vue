@@ -1,24 +1,67 @@
 <template>
 	<div class="content">
-			<!-- //! Tid att utföra en "ToDo" ligger i "event.target.type"! -->
-		<div class="containerItems"><a :type="toDoList.estTime" :id="toDoList.id" @click="handleSelect">
-			{{ toDoList.name }}
+		<div class="containerItems"><a @click="handleSelect(worktask)" v-for="worktask in avaliableWorkList" :key="worktask.id" :id="worktask.id" :title="worktask.title">
+			{{ worktask.title }}
 		</a></div>
+		<WorkListDisplay v-show="!keepHidden"/>
 	</div>
 </template>
 
 <script>
+ import {eventBus} from "../main";
+ import WorkListDisplay from './WorkListDisplay'
 export default {
 	name: 'BeforeSprint',
-	props: {
-		toDoList: Object(null),
-	},
+	data: () => ({
+		worklist: [],
+		avaliableWorkList: [],
+		keepHidden: true,
+		currentTask: '',
+		showDuringSprint: true,
+	}),
+	components: {WorkListDisplay},
 	methods: {
-		handleSelect(event){
-			console.log('hello there!');
-			console.log(event.target.id);
-			console.log(event);
+		handleSelect(task){
+			console.log('task selected: ' + task.title)
+			localStorage.setItem('currentTask', JSON.stringify(task))
+			this.$emit('showDuring', this.showDuringSprint)
+
+		},		
+		reciveList(){
+			this.worklist = eventBus.$emit('workList', this.worklist)			
 		},
+		showAvaliable(){
+			this.avaliableWorkList = this.worklist.filter(function(task){
+				return task.finished == false;
+			});
+			console.log('Tasks that are avaliable', this.avaliableWorkList);			
+			
+		}
+	},
+	
+	mounted(){
+		
+		if(localStorage.getItem('worklist')){
+			this.worklist = JSON.parse(localStorage.getItem('worklist'));
+			console.log('inside mounted if');
+			
+			this.showAvaliable()
+		}else{
+			console.log('inside mounted else');
+			
+			eventBus.$on('workList', (recivedList) => {
+			this.worklist = recivedList;
+			console.log(this.worklist);
+			console.log(recivedList);
+			this.showAvaliable()
+			eventBus.$on('theCurrentTask', (theSelected) => {
+				this.currentTask = theSelected;
+				console.log(theSelected);
+				console.log(this.currentTask);
+				})
+			})
+			
+		}
 		
 	}
 }

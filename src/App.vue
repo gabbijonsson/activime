@@ -4,20 +4,27 @@
 		<Header 
 		@showHome="showHome($event)"
 		@showsettings="showsettings($event)"/>
+		<WeatherInfo v-if="weatherIconEnabled" />
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
 			<h2>Vilken uppgift vill du jobba med idag?</h2>
-			<BeforeSprint  
-			v-bind:toDoList="toDoItem"
-			v-for="toDoItem in toDoList" :key="toDoItem.id"/>
+			<BeforeSprint @showDuring="showthisDuring($event)"/>
 		</div>
 		<div v-if="showFinishedTasks">
 			<h1>JIPPI!</h1>
 			<H3>Du har hunnit med en hel del idag!</H3>
 			<FinishedTasks/>
 		</div>
-		<SettingsPage v-if="showSettings"/>
 
+		
+		<DuringSprint @showEndingSprint="endSprint()" v-if="showDuringSprint"/>
+		<WorkListDisplay v-show="!hidden"/>
+
+		<EndingSprint @showBfSprint="showBfSprint($event)" v-if="showEndingSprint"/>
+
+		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
+
+		<EndDay @theEnd="endThisDay($event)" v-if="((!showFirstPage && !showFinishedTasks) && !showsettings)"/>
 		<Footer/>
 	</div>
 </template>
@@ -29,6 +36,12 @@ import FirstPage from './components/FirstPage'
 import SettingsPage from './components/SettingsPage'
 import BeforeSprint from './components/BeforeSprint'
 import FinishedTasks from './components/FinishedTasks'
+import WorkListDisplay from './components/WorkListDisplay'
+import DuringSprint from './components/DuringSprint'
+import WeatherInfo from './components/WeatherInfo'
+import EndDay from './components/EndDay';
+import EndingSprint from './components/EndingSprint'
+
 
 export default {
 	name: 'App',
@@ -36,31 +49,27 @@ export default {
 		Header,
 		Footer,
 		FirstPage,
-
 		SettingsPage,
 		BeforeSprint,
+		DuringSprint,
 		FinishedTasks,
+		WorkListDisplay,
+		WeatherInfo,
+		EndDay,
+		EndingSprint
+
 
 	},
 	data: () => ({
+		hidden: true,
+		showDuringSprint: false,
+		showEndingSprint: false,
 		showSettings: false,
 		showFirstPage: true,
 		showBeforeSprint: false,
 		showFinishedTasks: false,
-		toDoList: [
-			{id: 1, name: 'Inköpsorder A4-papper', estTime: 90},
-			{id: 2, name: 'Fakturagodkännande', estTime: 120},
-			{id: 3, name: 'Skolarbete', estTime: 433},
-			{id: 4, name: 'Deklarera' , estTime: 322},
-			{id: 5, name: 'Kreditbedömningar' , estTime: 653}
-		],
-		activityList: [
-			{id: 1, name: 'Promenad'},
-			{id: 2, name: 'Stretching'},
-			{id: 3, name: 'Avslappning'},
-			{id: 4, name: 'Fikapaus'},
-			{id: 5, name: 'Lunch'},
-		]
+		weatherIconEnabled: true,
+		
 	}),
 	methods: {
 		showHome(event){
@@ -68,20 +77,44 @@ export default {
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
+			this.showEndingSprint = false
 			this.showFinishedTasks = false
+			this.showDuringSprint = false
 		},
 		showsettings(event){
 			console.log(event);
 			this.showSettings = event.settings;
 			this.showFirstPage = event.firstpage;
 			this.showBeforeSprint = false
+			this.showEndingSprint = false
 			this.showFinishedTasks = false
+			this.showDuringSprint = false
 		},
 		showBfSprint(event){
 			console.log(event);
 			this.showBeforeSprint = event;
 			this.showSettings = false;
 			this.showFirstPage = false;
+			this.showEndingSprint = false;
+			this.showDuringSprint = false
+		},
+		showthisDuring(event){
+			console.log('Inside the cursed app.vue', event);
+			this.showDuringSprint = event;
+			this.showBeforeSprint = false
+
+		},
+		endSprint(){
+			this.showDuringSprint = false;
+			this.showEndingSprint = true;
+		},
+		toggleWeather(event){
+			this.weatherIconEnabled = event;
+		},
+		endThisDay(event){
+			this.showFinishedTasks = event;
+			this.showBeforeSprint = false
+			this.showDuringSprint = false
 		}
 	},
 }
@@ -140,6 +173,9 @@ h2{
 	margin-top: 5em;
 	margin-bottom: 4em;
 	text-decoration: underline;
+	text-align: center;
+}
+h1, h3{
 	text-align: center;
 }
 

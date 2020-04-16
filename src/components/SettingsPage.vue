@@ -1,12 +1,16 @@
 <template>
 	<div class="content">
-		<div class="activityList">
+		<activityListDisplay v-if="showActList"/>
+		<WorkListDisplay v-else-if="showWorkList"/>
+
+	<div v-else>
+		<!-- <div class="activityList">
 			<P>AKTIVITETSLISTA</P>
-			<button>REDIGERA</button>
-		</div>
+			<button @click="editActList">REDIGERA</button>
+		</div> -->
 		<div class="toDoList">
 			<p>ARBETSUPPGIFTER</p>
-			<button>REDIGERA</button>
+			<button @click="editWorkList">REDIGERA</button>
 		</div>
 		<div class="weatherSettings">
 			<p>VÄDER</p>
@@ -19,18 +23,27 @@
 			</div>
 		</div>
 	</div>
+	</div>
 </template>
 
 <script>
-
+import ActivityListDisplay from './ActivityListDisplay'
+import WorkListDisplay from './WorkListDisplay'
 
 export default {
 	name: 'SettingsPage',
+	components:{
+		ActivityListDisplay,
+		WorkListDisplay,
+	},
 	data: () => ({
 		activityList: [],
 		toDoList: [],
 		iconOnOff: Boolean,  //! Boolean för att visa eller inte väder icon
 		degreeValue: Number,
+		showActList: false,
+		showWorkList: false,
+		showSettings: true,
 	}),
 	computed: {
 
@@ -50,7 +63,17 @@ export default {
 			console.log(this.degreeValue);
 			localStorage.setItem('userDegrees', JSON.stringify(this.degreeValue))
 			this.$emit('userDegrees', this.degreeValue)
-		}
+		},
+		editActList(){
+			this.showActList = true
+			this.showWorkList = false
+			this.showSettings = false
+		},
+		editWorkList(){
+			this.showActList = false
+			this.showWorkList = true
+			this.showSettings = false
+		},
 	},
 	mounted(){
 		console.log('Settings mounted!');
@@ -71,6 +94,9 @@ export default {
 </script>
 
 <style scoped>
+.activityList{
+	margin-top: 8em;
+}
 .temp{
 	display: flex;
 	justify-content: space-evenly;
