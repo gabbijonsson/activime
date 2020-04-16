@@ -34,7 +34,11 @@ img{
   position: fixed;
   justify-content: flex-end;
   bottom: 10em;
-  width: 100vw;
+  width: 30vw;
+  right: 0vw;
+}
+.end-day--container:hover{
+	text-decoration: underline;
 }
 
 </style>

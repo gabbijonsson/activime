@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style scope>
-p {
+.ending-sprint--text-container p {
   font-size: 2em;
   margin: 3em 0;
 }
