@@ -15,8 +15,7 @@ export default {
   name: "FirstPage",
   data: () => ({
     greeting: `Välkommen
-	till ActiviMe,
-	Användare!`,
+	till ActiviMe!`,
 	startDay: "Är du redo att påbörja din arbetsdag?",
 	showBeforeSprint: Boolean,
   }),

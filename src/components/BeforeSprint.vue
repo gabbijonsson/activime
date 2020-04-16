@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 h2 {
-	margin-top: 10em;
+	margin-top: 5em;
 }
 .containerItems{
 	margin: auto;
