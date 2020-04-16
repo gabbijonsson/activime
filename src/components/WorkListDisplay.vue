@@ -8,7 +8,7 @@
         </div>
         <ul>
             <li class="listdisplay-container listdisplay-container--work" v-for="worktask in worklist" :key="worktask.id">
-                <p>{{ worktask.title }}</p>
+                <p class="worktask-title">{{ worktask.title }}</p>
                 <div class="listdisplay-container--btncontainer">
                 <button class="listdisplay-container--worklist--deletebtn" @click="removeWorkTask(worktask.id)"> TA BORT </button></div>
             </li>
@@ -102,14 +102,30 @@ export default {
 }
 ul {
     padding: 0;
+    margin-top: 4em;
 }
 li {
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 p {
     font-size: 2em;
     align-self: center;
+}
+
+.worktask-title {
+    margin: 1em;
+    font-size: 1.8em;
+}
+
+input {
+    padding: 1em;
+    margin-right: 1em;
+    width: 300px;
+}
+
+input::placeholder {
+    font-size: 1.5em;
 }
 
 .listdisplay-container--worklist {
