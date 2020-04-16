@@ -1,8 +1,11 @@
 <template>
 	<div class="content">
-		<div class="containerItems"><a @click="handleSelect(worktask)" v-for="worktask in worklist" :key="worktask.id" :id="worktask.id" :title="worktask.title">
+		<div class="containerItems">
+			<h2>Vilken uppgift vill du jobba med idag?</h2>
+			<a @click="handleSelect(worktask)" v-for="worktask in avaliableWorkList" :key="worktask.id" :id="worktask.id" :title="worktask.title">
 			{{ worktask.title }}
-		</a></div>
+			</a>
+		</div>
 		<WorkListDisplay v-show="!keepHidden"/>
 	</div>
 </template>
@@ -14,6 +17,7 @@ export default {
 	name: 'BeforeSprint',
 	data: () => ({
 		worklist: [],
+		avaliableWorkList: [],
 		keepHidden: true,
 		currentTask: '',
 		showDuringSprint: true,
@@ -29,29 +33,56 @@ export default {
 		reciveList(){
 			this.worklist = eventBus.$emit('workList', this.worklist)			
 		},
+		showAvaliable(){
+			this.avaliableWorkList = this.worklist.filter(function(task){
+				return task.finished == false;
+			});
+			console.log('Tasks that are avaliable', this.avaliableWorkList);			
+			
+		}
 	},
-	created(){
-		eventBus.$on('theCurrentTask', (theSelected) => {
-			this.currentTask = theSelected;
-			console.log(theSelected);
-			console.log(this.currentTask);
+	mounted(){
+		
+		if(localStorage.getItem('worklist')){
+			this.worklist = JSON.parse(localStorage.getItem('worklist'));
+			console.log('inside mounted if');
 			
+			this.showAvaliable()
+		}else{
+			console.log('inside mounted else');
 			
-		}),
-		eventBus.$on('workList', (recivedList) => {
+			eventBus.$on('workList', (recivedList) => {
 			this.worklist = recivedList;
 			console.log(this.worklist);
 			console.log(recivedList);
-		})
-	},
+			this.showAvaliable()
+			eventBus.$on('theCurrentTask', (theSelected) => {
+				this.currentTask = theSelected;
+				console.log(theSelected);
+				console.log(this.currentTask);
+				})
+			})
+			
+		}
+		
+	}
 }
 </script>
 
 <style scoped>
+h2 {
+	margin-top: 10em;
+}
 .containerItems{
-	margin-top: 2em;
+	margin: auto;
 	padding: 1em;
 }
+a {
+	display: block;
+	padding: 1em;
+	font-size: 1.5em;
+}
+
 a:hover{
 	cursor: pointer;
 	text-decoration: underline;

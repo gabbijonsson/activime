@@ -7,12 +7,10 @@
 		<WeatherInfo v-if="weatherIconEnabled" />
 		<FirstPage @showBfSprint="showBfSprint($event)" v-if="showFirstPage"/>
 		<div v-if="showBeforeSprint">
-			<h2>Vilken uppgift vill du jobba med idag?</h2>
 			<BeforeSprint @showDuring="showthisDuring($event)"/>
 		</div>
 		<div v-if="showFinishedTasks">
-			<h1>JIPPI!</h1>
-			<H3>Du har hunnit med en hel del idag!</H3>
+			
 			<FinishedTasks/>
 		</div>
 
@@ -116,7 +114,7 @@ export default {
 			this.showBeforeSprint = false
 			this.showDuringSprint = false
 		}
-	},
+	}
 }
 </script>
 

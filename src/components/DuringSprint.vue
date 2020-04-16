@@ -52,7 +52,7 @@ p {
 }
 .during-sprint--text-container {
   position: absolute;
-  top: 25%;
+  top: 40%;
   left: 50%;
   width: 100vw;
   transform: translate(-50%, -50%);

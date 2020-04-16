@@ -96,7 +96,9 @@ export default {
 
 <style scoped>
 img {
-    margin-top: 5em;
-    height: 42px;
+  position: absolute;
+  top: 5em;
+  left: 5em;
+  height: 100px;
 }
 </style>
