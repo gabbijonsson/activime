@@ -41,6 +41,7 @@ export default {
 			
 		}
 	},
+	
 	mounted(){
 		
 		if(localStorage.getItem('worklist')){

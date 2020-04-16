@@ -4,10 +4,10 @@
 		<WorkListDisplay v-else-if="showWorkList"/>
 
 	<div v-else>
-		<div class="activityList">
+		<!-- <div class="activityList">
 			<P>AKTIVITETSLISTA</P>
 			<button @click="editActList">REDIGERA</button>
-		</div>
+		</div> -->
 		<div class="toDoList">
 			<p>ARBETSUPPGIFTER</p>
 			<button @click="editWorkList">REDIGERA</button>

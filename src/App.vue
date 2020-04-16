@@ -22,7 +22,7 @@
 
 		<SettingsPage @checkboxOnOff="toggleWeather($event)" v-if="showSettings"/>
 
-		<EndDay @theEnd="endThisDay($event)" v-if="showDuringSprint"/>
+		<EndDay @theEnd="endThisDay($event)" v-if="((!showFirstPage && !showFinishedTasks) && !showsettings)"/>
 		<Footer/>
 	</div>
 </template>
